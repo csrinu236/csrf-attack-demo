@@ -29,7 +29,7 @@ const LoginForm = () => {
   const handleTransfer = async (e) => {
     e.preventDefault();
     // Here you can handle form submission, like sending a request to authenticate the user
-    const resp = await fetch("http://localhost:5000/bank-transfer", {
+    const resp = await fetch("https://express-starter-8jm6ep49q-chenna-sreenus-projects.vercel.app/bank-transfer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
