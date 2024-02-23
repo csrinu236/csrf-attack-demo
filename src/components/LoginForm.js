@@ -6,7 +6,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("secret");
   const [account, setAccount] = useState("123456789");
   const [amount, setAmount] = useState("100000");
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const LoginForm = () => {
       body: JSON.stringify({ email, password }),
     }).then((res) => {
       if (res.ok) {
-        setLoggedIn(true);
+        // setLoggedIn(true);
       }
     });
     // For demonstration purposes, just logging email and password

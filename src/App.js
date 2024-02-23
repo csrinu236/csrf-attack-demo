@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./main.scss";
 import LoginForm from "./components/LoginForm";
 
