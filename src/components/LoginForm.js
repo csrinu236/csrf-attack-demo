@@ -12,7 +12,7 @@ const LoginForm = () => {
     e.preventDefault();
     // Here you can handle form submission, like sending a request to authenticate the user
     // fetch("http://localhost:5000/api/v1/auth/login", {
-    fetch("https://express-starter-8m0hys2z3-chenna-sreenus-projects.vercel.app/api/v1/auth/login", {
+    fetch("https://express-starter-e7oh26q8c-chenna-sreenus-projects.vercel.app/api/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ const LoginForm = () => {
   const handleTransfer = async (e) => {
     e.preventDefault();
     // Here you can handle form submission, like sending a request to authenticate the user
-    const resp = await fetch("https://express-starter-8m0hys2z3-chenna-sreenus-projects.vercel.app/bank-transfer", {
+    const resp = await fetch("https://express-starter-e7oh26q8c-chenna-sreenus-projects.vercel.app/bank-transfer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
