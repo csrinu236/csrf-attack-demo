@@ -41,7 +41,7 @@ const LoginForm = () => {
 
     if (resp.ok) {
       const data = await resp.json();
-      alert("Transfer of " + data.amount + " is done");
+      alert("Transfer of " + data.amount + " is done to " + data.account);
     } else {
       alert("Please login first");
     }
