@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
-import { csrfToken } from "../App";
+import { csrfToken } from "../utils";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("csrinu236@gmail.com");

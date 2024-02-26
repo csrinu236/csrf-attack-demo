@@ -1,10 +1,7 @@
 import "./main.scss";
 import LoginForm from "./components/LoginForm";
 import { useEffect } from "react";
-
-export const csrfToken = {
-  key: null,
-};
+import { csrfToken } from "./utils";
 
 function App() {
   useEffect(() => {
