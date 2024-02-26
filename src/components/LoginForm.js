@@ -1,30 +1,28 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
+import { csrfToken } from "../App";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("csrinu236@gmail.com");
   const [password, setPassword] = useState("secret");
   const [account, setAccount] = useState("123456789");
-  const [amount, setAmount] = useState("100000");
+  const [amount, setAmount] = useState("1000");
   // const [loggedIn, setLoggedIn] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you can handle form submission, like sending a request to authenticate the user
-    // fetch("http://localhost:5000/api/v1/auth/login", {
-    fetch("https://weak-teal-turtle-kilt.cyclic.app/api/v1/auth/login", {
+    const resp = await fetch("https://weak-teal-turtle-kilt.cyclic.app/api/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
       body: JSON.stringify({ email, password }),
-    }).then((res) => {
-      if (res.ok) {
-        // setLoggedIn(true);
-      }
     });
-    // For demonstration purposes, just logging email and password
+    if (resp.ok) {
+      const data = await resp.json();
+      console.log(data);
+      csrfToken.key = data?.csrfToken;
+    }
   };
 
   const handleTransfer = async (e) => {
@@ -34,6 +32,7 @@ const LoginForm = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        csrftoken: csrfToken.key,
       },
       credentials: "include",
       body: JSON.stringify({ account, amount }),
