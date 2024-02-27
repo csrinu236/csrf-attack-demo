@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
-import { csrfToken } from "../utils";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("csrinu236@gmail.com");
@@ -21,18 +20,19 @@ const LoginForm = () => {
     if (resp.ok) {
       const data = await resp.json();
       console.log(data);
-      csrfToken.key = data?.csrfToken;
+      localStorage.setItem("csrfToken", data?.csrfToken);
     }
   };
 
   const handleTransfer = async (e) => {
     e.preventDefault();
+    const csrftoken = localStorage.getItem("csrfToken") ? localStorage.getItem("csrfToken") : null;
     // Here you can handle form submission, like sending a request to authenticate the user
     const resp = await fetch("https://weak-teal-turtle-kilt.cyclic.app/bank-transfer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        csrftoken: csrfToken.key,
+        csrftoken: csrftoken,
       },
       credentials: "include",
       body: JSON.stringify({ account, amount }),
