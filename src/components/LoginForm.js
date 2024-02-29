@@ -27,6 +27,7 @@ const LoginForm = () => {
   const handleTransfer = async (e) => {
     e.preventDefault();
     const csrftoken = localStorage.getItem("csrfToken") ? localStorage.getItem("csrfToken") : null;
+    console.log({ csrftoken });
     // Here you can handle form submission, like sending a request to authenticate the user
     const resp = await fetch("https://weak-teal-turtle-kilt.cyclic.app/bank-transfer", {
       method: "POST",
@@ -42,7 +43,8 @@ const LoginForm = () => {
       const data = await resp.json();
       alert("Transfer of " + data.amount + " is done");
     } else {
-      alert("Please login first");
+      const data = await resp.json();
+      alert("" + data.msg);
     }
 
     // For demonstration purposes, just logging email and password
