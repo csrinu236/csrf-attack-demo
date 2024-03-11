@@ -51,6 +51,35 @@ const LoginForm = () => {
     // For demonstration purposes, just logging email and password
   };
 
+  const xhrHandler = () => {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://weak-teal-turtle-kilt.cyclic.app/bank-transfer", true);
+    xhr.withCredentials = true; // Include credentials in cross-origin requests
+
+    // Set content type to text/plain
+    xhr.setRequestHeader("Content-Type", "text/plain");
+
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        console.log("Request succeeded with response:", xhr.responseText);
+      } else {
+        console.error("Request failed with status:", xhr.status);
+      }
+    };
+
+    xhr.onerror = function () {
+      console.error("Request failed");
+    };
+
+    // Your data to send
+    var dataToSend = JSON.stringify({
+      account: "456",
+      amount: "1000000",
+    });
+
+    xhr.send(dataToSend);
+  };
+
   return (
     <>
       <div className="login-container">
@@ -82,6 +111,9 @@ const LoginForm = () => {
             Transfer
           </button>
         </form>
+        <button className="btn" onClick={xhrHandler}>
+          sendXHRRequest
+        </button>
       </div>
     </>
   );
