@@ -12,12 +12,11 @@ const LoginForm = () => {
     e.preventDefault();
     // Here you can handle form submission, like sending a request to authenticate the user
     // fetch("http://localhost:5000/api/v1/auth/login", {
-    fetch("http://localhost:8888/.netlify/functions/app/v1/auth/login", {
+    fetch("https://creative-flora.netlify.app/.netlify/functions/app/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
       body: JSON.stringify({ email, password }),
     }).then((res) => {
       if (res.ok) {
@@ -30,7 +29,7 @@ const LoginForm = () => {
   const handleTransfer = async (e) => {
     e.preventDefault();
     // Here you can handle form submission, like sending a request to authenticate the user
-    const resp = await fetch("https://weak-teal-turtle-kilt.cyclic.app/bank-transfer", {
+    const resp = await fetch("https://creative-flora.netlify.app/.netlify/functions/app/bank-transfer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
