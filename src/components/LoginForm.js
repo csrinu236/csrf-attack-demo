@@ -12,7 +12,7 @@ const LoginForm = () => {
     e.preventDefault();
     // Here you can handle form submission, like sending a request to authenticate the user
     // fetch("http://localhost:5000/api/v1/auth/login", {
-    fetch("https://weak-teal-turtle-kilt.cyclic.app/api/v1/auth/login", {
+    fetch("http://localhost:8888/.netlify/functions/app/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
