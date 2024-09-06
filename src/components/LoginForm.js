@@ -9,12 +9,12 @@ const LoginForm = () => {
   const [password, setPassword] = useState("secret");
   const [account, setAccount] = useState("123456789");
   const [amount, setAmount] = useState("100000");
-  // const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can handle form submission, like sending a request to authenticate the user
-    // fetch("http://localhost:5000/api/v1/auth/login", {
+    setLoading(true);
     fetch(`${URL}/.netlify/functions/app/v1/auth/login`, {
       method: "POST",
       headers: {
@@ -24,10 +24,12 @@ const LoginForm = () => {
       body: JSON.stringify({ email, password }),
     }).then((res) => {
       if (res.ok) {
-        // setLoggedIn(true);
+        setLoading(false);
+        setLoggedIn(true);
+      } else {
+        setLoading(false);
       }
     });
-    // For demonstration purposes, just logging email and password
   };
 
   const handleTransfer = async (e) => {
@@ -57,7 +59,9 @@ const LoginForm = () => {
       <div className="login-container">
         {/* <a href="http://localhost:5000/bank-transfer">Bank</a> */}
         <form onSubmit={handleSubmit} className="login-form">
-          <h2>Hi Please Login</h2>
+          {!isLoading && <h3>{loggedIn ? "LogIn Success" : "Hi Please Login"}</h3>}
+          {isLoading && <h3>Loading...</h3>}
+
           <div className="form-group">
             <label>Email:</label>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
@@ -69,7 +73,7 @@ const LoginForm = () => {
           <button type="submit">Login</button>
         </form>
         <form className="login-form">
-          <h2>Make a bank transfer</h2>
+          <h3>Make a bank transfer</h3>
           <div className="form-group">
             <label>To Account</label>
             <input type="input" value={account} onChange={(e) => setAccount(e.target.value)} required />
@@ -79,7 +83,7 @@ const LoginForm = () => {
             <input type="input" value={amount} onChange={(e) => setAmount(e.target.value)} required />
           </div>
 
-          <button type="submit" onClick={handleTransfer}>
+          <button type="submit" disabled={!loggedIn} onClick={handleTransfer}>
             Transfer
           </button>
         </form>
