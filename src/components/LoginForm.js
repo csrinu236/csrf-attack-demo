@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 
+// const URL = "https://creative-flora.netlify.app";
+const URL = "http://localhost:8888";
+
 const LoginForm = () => {
   const [email, setEmail] = useState("csrinu236@gmail.com");
   const [password, setPassword] = useState("secret");
@@ -12,11 +15,12 @@ const LoginForm = () => {
     e.preventDefault();
     // Here you can handle form submission, like sending a request to authenticate the user
     // fetch("http://localhost:5000/api/v1/auth/login", {
-    fetch("https://creative-flora.netlify.app/.netlify/functions/app/v1/auth/login", {
+    fetch(`${URL}/.netlify/functions/app/v1/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include", // this is must and should to set the cookie to browser cookies
       body: JSON.stringify({ email, password }),
     }).then((res) => {
       if (res.ok) {
@@ -29,7 +33,7 @@ const LoginForm = () => {
   const handleTransfer = async (e) => {
     e.preventDefault();
     // Here you can handle form submission, like sending a request to authenticate the user
-    const resp = await fetch("https://creative-flora.netlify.app/.netlify/functions/app/bank-transfer", {
+    const resp = await fetch(`${URL}/.netlify/functions/app/bank-transfer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
