@@ -57,7 +57,6 @@ const LoginForm = () => {
   return (
     <>
       <div className="login-container">
-        {/* <a href="http://localhost:5000/bank-transfer">Bank</a> */}
         <form onSubmit={handleSubmit} className="login-form">
           {!isLoading && <h3>{loggedIn ? "LogIn Success" : "Hi Please Login"}</h3>}
           {isLoading && <h3>Loading...</h3>}
@@ -86,6 +85,9 @@ const LoginForm = () => {
           <button type="submit" disabled={!loggedIn} onClick={handleTransfer}>
             Transfer
           </button>
+          <br />
+          <br />
+          {loggedIn && <a href="https://csrf-phishing-mail.netlify.app/">Phising Mail Link</a>}
         </form>
       </div>
     </>
