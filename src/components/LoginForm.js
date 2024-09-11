@@ -15,7 +15,7 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    fetch(`${URL}/.netlify/functions/app/v1/auth/login`, {
+    fetch(`${URL}/v1/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const LoginForm = () => {
   const handleTransfer = async (e) => {
     e.preventDefault();
     // Here you can handle form submission, like sending a request to authenticate the user
-    const resp = await fetch(`${URL}/.netlify/functions/app/bank-transfer`, {
+    const resp = await fetch(`${URL}/bank-transfer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
