@@ -82,7 +82,7 @@ const LoginForm = () => {
             <input type="input" value={amount} onChange={(e) => setAmount(e.target.value)} required />
           </div>
 
-          <button type="submit" disabled={!loggedIn} onClick={handleTransfer}>
+          <button type="submit" onClick={handleTransfer}>
             Transfer
           </button>
           <br />
